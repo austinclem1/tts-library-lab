@@ -24,10 +24,13 @@ public class Library {
     }
 
     public void borrowBook(String title) {
-        Book foundBook = this.books.stream()
-                .filter(book -> book.getTitle().equals(title))
-                .findAny()
-                .orElse(null);
+        Book foundBook = null;
+        for (Book book : this.books) {
+            if book.getTitle().equals(title) {
+                foundBook = book;
+                break;
+            }
+        }
 
         if (foundBook == null) {
             System.out.printf("Sorry, \"%s\" is not in our catalog.\n", title);
